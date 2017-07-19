@@ -3,8 +3,22 @@
     xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
     xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
     xmlns:of="http://omnifaces.org/functions">
-
-<h:outputText value="Dick" />
-<canvas id="myCanvas" style="border:1px solid #000000;"> </canvas>
-
+<h:head>
+    <h:outputScript library="js" name="canvas.js"></h:outputScript>
+</h:head>
+<body>
+    <h:form>
+        <h:outputText value="Dick river" style="display:block;" />
+        <canvas id="myCanvas" width="800"
+            height="800" style="border:1px solid #000000;">
+        </canvas>
+        <p:commandButton value="Demarrer" process="@this"
+            actionListener="#{indexController.start()}"></p:commandButton>
+        <p:commandButton value="Stop" process="@this"
+            actionListener="#{indexController.stop()}"></p:commandButton>
+        <p:commandButton value="Clear" process="@this"
+            actionListener="#{indexController.clear()}"></p:commandButton>
+        <o:socket channel="canvas" onmessage="onMessage" />
+    </h:form>
+</body>
 </html>
